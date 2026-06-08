@@ -12,7 +12,7 @@ plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示为方块的问�
 # 强制刷新 Matplotlib 字体缓存（防止旧缓存导致字体不生效）
 fm._load_fontmanager(try_read_cache=False)
 
-filename = 'soxl_log_2026_06_07.txt'
+filename = 'soxl_log_2026_06_08.txt'
 
 # ================= 2. 智能读取与表头处理 =================
 df = pd.read_csv(filename, sep='|', skipinitialspace=True)
@@ -33,7 +33,7 @@ for col in ['Buy_Ratio', 'Sell_Ratio', 'B-S_Diff']:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # ================= 4. 时间序列处理 =================
-df['Timestamp'] = pd.to_datetime('2026-06-07 ' + df['Timestamp'].astype(str).str.strip(), errors='coerce')
+df['Timestamp'] = pd.to_datetime('2026-06-08 ' + df['Timestamp'].astype(str).str.strip(), errors='coerce')
 df = df.dropna(subset=['Timestamp'])
 df.set_index('Timestamp', inplace=True)
 df.sort_index(inplace=True)
@@ -51,7 +51,7 @@ fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(14, 10), sharex=True,
 
 # 图1：价格走势
 ax1.plot(df_resampled.index, df_resampled['Last_Price'], color='#1f77b4', linewidth=1.5, label='Last Price')
-ax1.set_title('SOXL 价格走势与市场情绪分析 (2026-06-07)', fontsize=16, fontweight='bold')
+ax1.set_title('SOXL 价格走势与市场情绪分析 (2026-06-08)', fontsize=16, fontweight='bold')
 ax1.set_ylabel('Price (USD)', fontsize=12)
 ax1.grid(True, linestyle='--', alpha=0.4)
 ax1.legend(loc='upper left')
